@@ -974,15 +974,10 @@ where
         let hasher = S::default();
         let map = DashMap::with_capacity_and_hasher(capacity.strings, hasher.clone());
         let strings = DashMap::with_capacity_and_hasher(capacity.strings, hasher);
-        let mut highest = 0;
         let arena = LockfreeArena::new(capacity.bytes, usize::max_value())
             .expect("failed to allocate memory for interner");
 
         for (string, key) in deser_map {
-            if key.into_usize() > highest {
-                highest = key.into_usize();
-            }
-
             let allocated = unsafe {
                 arena
                     .store_str(&string)
@@ -993,15 +988,10 @@ where
             strings.insert(key, allocated);
         }
 
-        // Adjust the key so the next insert after deserialization doesn't collide: Kixiron/lasso#44
-        if !map.is_empty() {
-            highest += 1;
-        }
-
         Ok(Self {
+            key: AtomicUsize::new(map.len()),
             map,
             strings,
-            key: AtomicUsize::new(highest),
             arena,
         })
     }
