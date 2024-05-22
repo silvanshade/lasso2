@@ -11,15 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.8.1] - 2024-05-22
 
-- Fix Kixiron/lasso #44
+### Fixed
+
+- Fix Kixiron/lasso [#44](https://github.com/Kixiron/lasso/issues/44)
 
 ## [0.8.0] - 2024-05-21
 
+### Changed
+
 - Forked lasso into lasso2
-- Fix Kixiron/lasso #47
-- Update to hashbrown 0.14.5
-- Update to criterion 0.5.1
+- Updated to hashbrown 0.14.5
+- Updated to criterion 0.5.1
 - Bumped MSRV to 1.71.0
+
+### Fixed
+
+- Fix Kixiron/lasso [#47](https://github.com/Kixiron/lasso/issues/47)
 
 ## [0.7.2] - 2023-05-15
 
