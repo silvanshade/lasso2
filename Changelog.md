@@ -9,7 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - ReleaseDate
 
-## [0.8.0] - 2024-05-24
+## [0.8.1] - 2024-05-22
+
+- Fix Kixiron/lasso #44
+
+## [0.8.0] - 2024-05-21
+
+- Forked lasso into lasso2
+- Fix Kixiron/lasso #47
+- Update to hashbrown 0.14.5
+- Update to criterion 0.5.1
+- Bumped MSRV to 1.71.0
 
 ## [0.7.2] - 2023-05-15
 
@@ -19,8 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Bumped MSRV to 1.71.0
-- Forked lasso into lasso2
 - Bumped MSRV to 1.61.0
 - Updated to 2021 edition
 - Interning empty strings no longer counts towards the memory limit of any interners. Empty strings now take up zero
@@ -204,7 +212,8 @@ This version really wouldn't be possible without the amazing work of @CAD97. The
 
 <!-- next-url -->
 
-[Unreleased]: https://github.com/silvanshade/lasso2/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/silvanshade/lasso2/compare/v0.8.1...HEAD
+[0.8.1]: https://github.com/silvanshade/lasso2/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/silvanshade/lasso2/compare/v0.7.2...v0.8.0
 [0.7.2]: https://github.com/silvanshade/lasso2/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/silvanshade/lasso2/compare/v0.7.0...v0.7.1
