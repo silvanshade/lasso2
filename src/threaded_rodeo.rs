@@ -993,6 +993,11 @@ where
             strings.insert(key, allocated);
         }
 
+        // Adjust the key so the next insert after deserialization doesn't collide: Kixiron/lasso#44
+        if !map.is_empty() {
+            highest += 1;
+        }
+
         Ok(Self {
             map,
             strings,
@@ -1714,6 +1719,30 @@ mod tests {
             assert_eq!(correct_str, deser.resolve(&correct_key));
             assert_eq!(correct_str, deser2.resolve(&correct_key));
         }
+    }
+
+    #[test]
+    #[cfg(feature = "serialize")]
+    fn no_collision_after_deserialization() {
+        let rodeo0 = ThreadedRodeo::default();
+        rodeo0.get_or_intern("a");
+        rodeo0.get_or_intern("b");
+        let str0 = serde_json::to_string(&rodeo0).unwrap();
+        let rodeo1 = serde_json::from_str::<ThreadedRodeo>(&str0).unwrap();
+        rodeo0.get_or_intern("c");
+        rodeo1.get_or_intern("c");
+        assert_eq!(rodeo0, rodeo1);
+    }
+
+    #[test]
+    #[cfg(feature = "serialize")]
+    fn next_key_not_skipped_from_deserialization_key_adjustment() {
+        let rodeo0 = ThreadedRodeo::default();
+        let str0 = serde_json::to_string(&rodeo0).unwrap();
+        let rodeo1 = serde_json::from_str::<ThreadedRodeo>(&str0).unwrap();
+        rodeo0.get_or_intern("a");
+        rodeo1.get_or_intern("a");
+        assert_eq!(rodeo0, rodeo1);
     }
 
     #[test]
