@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use lasso::{Capacity, Rodeo, RodeoReader, RodeoResolver, Spur};
+use lasso2::{Capacity, Rodeo, RodeoReader, RodeoResolver, Spur};
 use std::{
     collections::hash_map::RandomState,
     hash::BuildHasher,

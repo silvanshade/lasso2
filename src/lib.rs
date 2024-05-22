@@ -40,7 +40,7 @@
 //!
 //! ## Cargo Features
 //!
-//! By default `lasso` has one dependency, `hashbrown`, and only [`struct@Rodeo`] is exposed. Hashbrown is used since the
+//! By default `lasso2` has one dependency, `hashbrown`, and only [`struct@Rodeo`] is exposed. Hashbrown is used since the
 //! [`raw_entry` api] is currently unstable in the standard library's hashmap.
 //! The raw hashmap API is used for custom hashing within the hashmaps, which works to dramatically reduce memory usage
 //! To make use of [`struct@ThreadedRodeo`], you must enable the `multi-threaded` feature.
@@ -56,7 +56,7 @@
 //! ## Example: Using Rodeo
 //!
 //! ```rust
-//! use lasso::Rodeo;
+//! use lasso2::Rodeo;
 //!
 //! let mut rodeo = Rodeo::default();
 //! let key = rodeo.get_or_intern("Hello, world!");
@@ -114,7 +114,7 @@
 //! # }
 //! #
 //! # #[cfg(feature = "multi-threaded")]
-//! use lasso::ThreadedRodeo;
+//! use lasso2::ThreadedRodeo;
 //! use std::{thread, sync::Arc};
 //!
 //! let rodeo = Arc::new(ThreadedRodeo::default());
@@ -146,7 +146,7 @@
 //! ## Example: Creating a RodeoReader
 //!
 //! ```rust
-//! use lasso::Rodeo;
+//! use lasso2::Rodeo;
 //!
 //! // Rodeo and ThreadedRodeo are interchangeable here
 //! let mut rodeo = Rodeo::default();
@@ -166,7 +166,7 @@
 //! ## Example: Creating a RodeoResolver
 //!
 //! ```rust
-//! use lasso::Rodeo;
+//! use lasso2::Rodeo;
 //!
 //! // Rodeo and ThreadedRodeo are interchangeable here
 //! let mut rodeo = Rodeo::default();
@@ -189,7 +189,7 @@
 //! what would otherwise be unused space, which can be critical for memory-sensitive applications.
 //!
 //! ```rust
-//! use lasso::{Key, Rodeo};
+//! use lasso2::{Key, Rodeo};
 //!
 //! // First make our key type, this will be what we use as handles into our interner
 //! #[derive(Copy, Clone, PartialEq, Eq)]
@@ -248,7 +248,7 @@
 //! ## Example: Creation using `FromIterator`
 //!
 //! ```rust
-//! use lasso::Rodeo;
+//! use lasso2::Rodeo;
 //! use core::iter::FromIterator;
 //!
 //! // Works for both `Rodeo` and `ThreadedRodeo`
@@ -263,7 +263,7 @@
 //! ```
 //!
 //! ```rust
-//! use lasso::Rodeo;
+//! use lasso2::Rodeo;
 //! use core::iter::FromIterator;
 //!
 //! // Works for both `Rodeo` and `ThreadedRodeo`
@@ -413,15 +413,15 @@
 //! | `try_resolve`       |    1.9264 μs    |     13.277 GiB/s      |     3.9289 μs     |      6.5097 GiB/s       |
 //! | `resolve_unchecked` |    1.6638 μs    |     15.372 GiB/s      |     3.1741 μs     |      8.0578 GiB/s       |
 //!
-//! [0]: https://github.com/Kixiron/lasso
-//! [1]: https://github.com/Kixiron/lasso/workflows/CI/badge.svg
-//! [2]: https://github.com/Kixiron/lasso/workflows/Security%20Audit/badge.svg
-//! [3]: https://coveralls.io/repos/github/Kixiron/lasso/badge.svg?branch=master
-//! [4]: https://coveralls.io/github/Kixiron/lasso?branch=master
-//! [6]: https://docs.rs/lasso/badge.svg
-//! [7]: https://docs.rs/lasso
-//! [8]: https://img.shields.io/crates/v/lasso.svg
-//! [9]: https://crates.io/crates/lasso
+//! [0]: https://github.com/silvanshade/lasso2
+//! [1]: https://github.com/silvanshade/lasso2/workflows/CI/badge.svg
+//! [2]: https://github.com/silvanshade/lasso2/workflows/Security%20Audit/badge.svg
+//! [3]: https://coveralls.io/repos/github/silvanshade/lasso2/badge.svg?branch=master
+//! [4]: https://coveralls.io/github/silvanshade/lasso2?branch=master
+//! [6]: https://docs.rs/lasso2/badge.svg
+//! [7]: https://docs.rs/lasso2
+//! [8]: https://img.shields.io/crates/v/lasso2.svg
+//! [9]: https://crates.io/crates/lasso2
 //! [key]: crate::Key
 //! [niches]: https://rust-lang.github.io/unsafe-code-guidelines/layout/enums.html#discriminant-elision-on-option-like-enums
 //! [`hashbrown`]: https://crates.io/crates/hashbrown

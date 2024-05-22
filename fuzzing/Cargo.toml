@@ -11,5 +11,5 @@ path = "src/rodeo.rs"
 [dependencies.honggfuzz]
 version = "0.5.47"
 
-[dependencies.lasso]
+[dependencies.lasso2]
 path = "../"

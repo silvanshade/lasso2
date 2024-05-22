@@ -75,7 +75,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Rodeo, Spur};
+    /// use lasso2::{Rodeo, Spur};
     ///
     /// let mut rodeo: Rodeo<Spur> = Rodeo::new();
     /// let hello = rodeo.get_or_intern("Hello, ");
@@ -102,7 +102,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Rodeo, Capacity, Spur};
+    /// use lasso2::{Rodeo, Capacity, Spur};
     ///
     /// let rodeo: Rodeo<Spur> = Rodeo::with_capacity(Capacity::for_strings(10));
     /// ```
@@ -129,7 +129,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Rodeo, MemoryLimits, Spur};
+    /// use lasso2::{Rodeo, MemoryLimits, Spur};
     ///
     /// let rodeo: Rodeo<Spur> = Rodeo::with_memory_limits(MemoryLimits::for_memory_usage(4096));
     /// ```
@@ -156,7 +156,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Rodeo, MemoryLimits, Spur};
+    /// use lasso2::{Rodeo, MemoryLimits, Spur};
     ///
     /// let rodeo: Rodeo<Spur> = Rodeo::with_memory_limits(MemoryLimits::for_memory_usage(4096));
     /// ```
@@ -182,7 +182,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, Rodeo};
+    /// use lasso2::{Spur, Rodeo};
     /// use std::collections::hash_map::RandomState;
     ///
     /// let rodeo: Rodeo<Spur, RandomState> = Rodeo::with_hasher(RandomState::new());
@@ -204,7 +204,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, Capacity, Rodeo};
+    /// use lasso2::{Spur, Capacity, Rodeo};
     /// use std::collections::hash_map::RandomState;
     ///
     /// let rodeo: Rodeo<Spur, RandomState> = Rodeo::with_capacity_and_hasher(Capacity::for_strings(10), RandomState::new());
@@ -227,7 +227,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, Capacity, MemoryLimits, Rodeo};
+    /// use lasso2::{Spur, Capacity, MemoryLimits, Rodeo};
     /// use std::collections::hash_map::RandomState;
     ///
     /// let rodeo: Rodeo<Spur, RandomState> = Rodeo::with_capacity_memory_limits_and_hasher(
@@ -268,7 +268,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -296,7 +296,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -367,7 +367,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -393,7 +393,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -447,7 +447,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -485,7 +485,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -565,8 +565,8 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
-    /// # use lasso::{Key, Spur};
+    /// use lasso2::Rodeo;
+    /// # use lasso2::{Key, Spur};
     ///
     /// let mut rodeo = Rodeo::default();
     /// # let key_that_doesnt_exist = Spur::try_from_usize(1000).unwrap();
@@ -591,7 +591,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -617,7 +617,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -649,7 +649,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     ///
@@ -671,7 +671,7 @@ impl<K, S> Rodeo<K, S> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     /// rodeo.get_or_intern("Documentation often has little hidden bits in it");
@@ -689,7 +689,7 @@ impl<K, S> Rodeo<K, S> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let rodeo = Rodeo::default();
     /// assert!(rodeo.is_empty());
@@ -705,7 +705,7 @@ impl<K, S> Rodeo<K, S> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     /// let key = rodeo.get_or_intern("Somewhere over the rainbow...");
@@ -736,7 +736,7 @@ impl<K, S> Rodeo<K, S> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, Capacity, Rodeo};
+    /// use lasso2::{Spur, Capacity, Rodeo};
     ///
     /// let rodeo: Rodeo<Spur> = Rodeo::with_capacity(Capacity::for_strings(10));
     /// assert_eq!(rodeo.capacity(), 10);
@@ -790,7 +790,7 @@ impl<K, S> Rodeo<K, S> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     /// let key = rodeo.get_or_intern("Appear weak when you are strong, and strong when you are weak.");
@@ -823,7 +823,7 @@ impl<K, S> Rodeo<K, S> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// let mut rodeo = Rodeo::default();
     /// let key = rodeo.get_or_intern("Appear weak when you are strong, and strong when you are weak.");

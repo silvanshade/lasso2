@@ -67,21 +67,21 @@ where
     /// #
     /// # #[cfg(not(miri))]
     /// # fn main() {
-    /// use lasso::{ThreadedRodeo, Spur};
+    /// use lasso2::{ThreadedRodeo, Spur};
     /// use std::{thread, sync::Arc};
     ///
-    /// let lasso: Arc<ThreadedRodeo<Spur>> = Arc::new(ThreadedRodeo::new());
-    /// let hello = lasso.get_or_intern("Hello, ");
+    /// let lasso2: Arc<ThreadedRodeo<Spur>> = Arc::new(ThreadedRodeo::new());
+    /// let hello = lasso2.get_or_intern("Hello, ");
     ///
-    /// let l = Arc::clone(&lasso);
+    /// let l = Arc::clone(&lasso2);
     /// let world = thread::spawn(move || {
     ///     l.get_or_intern("World!")
     /// })
     /// .join()
     /// .unwrap();
     ///
-    /// assert_eq!("Hello, ", lasso.resolve(&hello));
-    /// assert_eq!("World!", lasso.resolve(&world));
+    /// assert_eq!("Hello, ", lasso2.resolve(&hello));
+    /// assert_eq!("World!", lasso2.resolve(&world));
     /// # }
     /// ```
     ///
@@ -102,7 +102,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{ThreadedRodeo, Capacity, Spur};
+    /// use lasso2::{ThreadedRodeo, Capacity, Spur};
     ///
     /// let rodeo: ThreadedRodeo<Spur> = ThreadedRodeo::with_capacity(Capacity::for_strings(10));
     /// ```
@@ -129,7 +129,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{ThreadedRodeo, MemoryLimits, Spur};
+    /// use lasso2::{ThreadedRodeo, MemoryLimits, Spur};
     ///
     /// let rodeo: ThreadedRodeo<Spur> = ThreadedRodeo::with_memory_limits(MemoryLimits::for_memory_usage(4096));
     /// ```
@@ -156,7 +156,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{ThreadedRodeo, MemoryLimits, Spur};
+    /// use lasso2::{ThreadedRodeo, MemoryLimits, Spur};
     ///
     /// let rodeo: ThreadedRodeo<Spur> = ThreadedRodeo::with_memory_limits(MemoryLimits::for_memory_usage(4096));
     /// ```
@@ -182,7 +182,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, ThreadedRodeo};
+    /// use lasso2::{Spur, ThreadedRodeo};
     /// use std::collections::hash_map::RandomState;
     ///
     /// let rodeo: ThreadedRodeo<Spur, RandomState> = ThreadedRodeo::with_hasher(RandomState::new());
@@ -204,7 +204,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, Capacity, ThreadedRodeo};
+    /// use lasso2::{Spur, Capacity, ThreadedRodeo};
     /// use std::collections::hash_map::RandomState;
     ///
     /// let rodeo: ThreadedRodeo<Spur, RandomState> = ThreadedRodeo::with_capacity_and_hasher(Capacity::for_strings(10), RandomState::new());
@@ -227,7 +227,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::{Spur, Capacity, MemoryLimits, ThreadedRodeo};
+    /// use lasso2::{Spur, Capacity, MemoryLimits, ThreadedRodeo};
     /// use std::collections::hash_map::RandomState;
     ///
     /// let rodeo: ThreadedRodeo<Spur, RandomState> = ThreadedRodeo::with_capacity_memory_limits_and_hasher(
@@ -268,7 +268,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     ///
@@ -295,7 +295,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     ///
@@ -359,7 +359,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let mut rodeo = ThreadedRodeo::default();
     ///
@@ -385,7 +385,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let mut rodeo = ThreadedRodeo::default();
     ///
@@ -427,7 +427,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     ///
@@ -450,7 +450,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     ///
@@ -473,8 +473,8 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
-    /// # use lasso::{Key, Spur};
+    /// use lasso2::ThreadedRodeo;
+    /// # use lasso2::{Key, Spur};
     ///
     /// let mut rodeo = ThreadedRodeo::default();
     /// # let key_that_doesnt_exist = Spur::try_from_usize(1000).unwrap();
@@ -499,7 +499,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     ///
@@ -518,7 +518,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     ///
@@ -536,7 +536,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     /// rodeo.get_or_intern("Documentation often has little hidden bits in it");
@@ -554,7 +554,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     /// assert!(rodeo.is_empty());
@@ -573,7 +573,7 @@ where
     /// # Example
     ///
     /// ```no_run
-    /// use lasso::{Spur, Capacity, ThreadedRodeo};
+    /// use lasso2::{Spur, Capacity, ThreadedRodeo};
     ///
     /// let rodeo: ThreadedRodeo<Spur> = ThreadedRodeo::with_capacity(Capacity::for_strings(10));
     /// assert_eq!(rodeo.capacity(), 10);
@@ -624,7 +624,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     /// let key = rodeo.get_or_intern("Appear weak when you are strong, and strong when you are weak.");
@@ -719,7 +719,7 @@ where
     /// # Example
     ///
     /// ```rust
-    /// use lasso::ThreadedRodeo;
+    /// use lasso2::ThreadedRodeo;
     ///
     /// let rodeo = ThreadedRodeo::default();
     /// let key = rodeo.get_or_intern("Appear weak when you are strong, and strong when you are weak.");

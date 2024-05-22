@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!-- next-header -->
+
 ## [Unreleased] - ReleaseDate
 
 ## [0.7.2] - 2023-05-15
@@ -126,7 +127,7 @@ This version really wouldn't be possible without the amazing work of @CAD97. The
 
 - Lasso's single-threaded configuration now supports back to Rust 1.34! Thanks to @jyn514 for their [hard work](https://github.com/Kixiron/lasso/pull/3)!
 - `Rodeo` and `RodeoReader` now use less memory since they only store their interned strings' pointers once
-- `Rodeo` and `RodeoReader` use a different hashing strategy for their maps, instead of using a hashed string and key pair, they now use the key hashed *as* their paired string. This allows for decreased memory usage
+- `Rodeo` and `RodeoReader` use a different hashing strategy for their maps, instead of using a hashed string and key pair, they now use the key hashed _as_ their paired string. This allows for decreased memory usage
 - The arena backing all interners now increases the amount of memory it allocates exponentially (The same doubling strategy used by `Vec` is used). This allows for fewer allocations to happen as more strings are interned
 - `hashbrown` is now a default dependency due to `HashMap`'s `raw_api` not being stable
 - Relaxed trait bounds of many structs and functions
@@ -162,7 +163,7 @@ This version really wouldn't be possible without the amazing work of @CAD97. The
 - Added `Key::try_from_usize`
 - Added `MiniSpur`
 - Added `MicroCord`
-- Removed blanket impls for `u8`-`usize` & the nonzero  varieties
+- Removed blanket impls for `u8`-`usize` & the nonzero varieties
 - Added lifetimes to all `Rodeo` types
 - Added lifetime to `Key`
 - Added the ID requirement to `Key`
@@ -192,18 +193,21 @@ This version really wouldn't be possible without the amazing work of @CAD97. The
 - Fixed memory leaks in `ThreadedRodeo`, for real this time
 
 ## 0.1.2
+
 ## 0.1.1
+
 ## 0.1.0
 
 <!-- next-url -->
-[Unreleased]: https://github.com/Kixiron/lasso/compare/v0.7.2...HEAD
-[0.7.2]: https://github.com/Kixiron/lasso/compare/v0.7.1...v0.7.2
-[0.7.1]: https://github.com/Kixiron/lasso/compare/v0.7.0...v0.7.1
-[0.7.0]: https://github.com/Kixiron/lasso/compare/v0.6.0...v0.7.0
-[0.6.0]: https://github.com/Kixiron/lasso/compare/v0.5.1...v0.6.0
-[0.5.1]: https://github.com/Kixiron/lasso/compare/v0.5.0...v0.5.1
-[0.5.0]: https://github.com/Kixiron/lasso/compare/v0.4.1...v0.5.0
-[0.4.1]: https://github.com/Kixiron/lasso/compare/v0.4.0...v0.4.1
-[0.4.0]: https://github.com/Kixiron/lasso/compare/v0.3.1...v0.4.0
-[0.3.1]: https://github.com/Kixiron/lasso/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/Kixiron/lasso/compare/v0.3.0
+
+[Unreleased]: https://github.com/silvanshade/lasso2/compare/v0.7.2...HEAD
+[0.7.2]: https://github.com/silvanshade/lasso2/compare/v0.7.1...v0.7.2
+[0.7.1]: https://github.com/silvanshade/lasso2/compare/v0.7.0...v0.7.1
+[0.7.0]: https://github.com/silvanshade/lasso2/compare/v0.6.0...v0.7.0
+[0.6.0]: https://github.com/silvanshade/lasso2/compare/v0.5.1...v0.6.0
+[0.5.1]: https://github.com/silvanshade/lasso2/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/silvanshade/lasso2/compare/v0.4.1...v0.5.0
+[0.4.1]: https://github.com/silvanshade/lasso2/compare/v0.4.0...v0.4.1
+[0.4.0]: https://github.com/silvanshade/lasso2/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/silvanshade/lasso2/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/silvanshade/lasso2/compare/v0.3.0

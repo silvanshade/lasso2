@@ -53,7 +53,7 @@ impl<K> RodeoResolver<K> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// // ThreadedRodeo is interchangeable for Rodeo here
     /// let mut rodeo = Rodeo::default();
@@ -86,7 +86,7 @@ impl<K> RodeoResolver<K> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// // ThreadedRodeo is interchangeable for Rodeo here
     /// let mut rodeo = Rodeo::default();
@@ -124,7 +124,7 @@ impl<K> RodeoResolver<K> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// // ThreadedRodeo is interchangeable for Rodeo here
     /// let mut rodeo = Rodeo::default();
@@ -150,8 +150,8 @@ impl<K> RodeoResolver<K> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
-    /// # use lasso::{Key, Spur};
+    /// use lasso2::Rodeo;
+    /// # use lasso2::{Key, Spur};
     ///
     /// let mut rodeo = Rodeo::default();
     /// let key = rodeo.get_or_intern("Strings of things with wings and dings");
@@ -175,7 +175,7 @@ impl<K> RodeoResolver<K> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// // ThreadedRodeo is interchangeable for Rodeo here
     /// let mut rodeo = Rodeo::default();
@@ -195,7 +195,7 @@ impl<K> RodeoResolver<K> {
     /// # Example
     ///
     /// ```rust
-    /// use lasso::Rodeo;
+    /// use lasso2::Rodeo;
     ///
     /// // ThreadedRodeo is interchangeable for Rodeo here
     /// let rodeo = Rodeo::default();

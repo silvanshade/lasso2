@@ -1,4 +1,4 @@
-use lasso::Rodeo;
+use lasso2::Rodeo;
 use std::sync::RwLock;
 
 lazy_static::lazy_static! {

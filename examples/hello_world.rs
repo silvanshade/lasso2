@@ -1,4 +1,4 @@
-use lasso::ThreadedRodeo;
+use lasso2::ThreadedRodeo;
 use std::sync::{Arc, Barrier};
 
 fn main() {

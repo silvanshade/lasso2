@@ -3,7 +3,7 @@ mod setup;
 use ahash::RandomState as AhashRandomState;
 use criterion::{black_box, criterion_group, criterion_main, BatchSize, Criterion, Throughput};
 use fxhash::FxBuildHasher;
-use lasso::{Capacity, Spur, ThreadedRodeo};
+use lasso2::{Capacity, Spur, ThreadedRodeo};
 use setup::{bench_lines, INPUT, NUM_THREADS};
 use std::{
     collections::hash_map::RandomState,

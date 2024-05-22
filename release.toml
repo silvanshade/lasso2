@@ -25,4 +25,4 @@ replace = "<!-- next-header -->\n## [Unreleased] - ReleaseDate\n"
 [[pre-release-replacements]]
 file = "Changelog.md"
 search = "<!-- next-url -->"
-replace = "<!-- next-url -->\n[Unreleased]: https://github.com/Kixiron/lasso/compare/{{tag_name}}...HEAD"
+replace = "<!-- next-url -->\n[Unreleased]: https://github.com/silvanshade/lasso2/compare/{{tag_name}}...HEAD"
