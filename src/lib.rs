@@ -472,9 +472,8 @@ mod hasher {
 #[doc(hidden)]
 mod locks {
     compile! {
-        if #[feature = "no-std"] {
-            pub use alloc::sync::Arc;
-        } else {
+        if #[feature = "multi-threaded"] {
+            #[allow(unused)] // Silence erroneous warning.
             pub use std::sync::Arc;
         }
     }

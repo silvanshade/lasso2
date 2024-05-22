@@ -10,7 +10,7 @@ use crate::{
 use alloc::vec::Vec;
 use core::{
     cmp::max,
-    hash::{BuildHasher, Hash, Hasher},
+    hash::BuildHasher,
     iter::FromIterator,
     num::NonZeroUsize,
     ops::Index,
@@ -19,6 +19,8 @@ use hashbrown::{
     hash_map::{RawEntryMut, RawVacantEntryMut},
     HashMap,
 };
+#[cfg(feature = "serialize")]
+use core::hash::{Hash, Hasher};
 
 compile! {
     if #[feature = "serialize"] {
@@ -510,9 +512,7 @@ fn hash_string<S>(hasher: &S, string: &str) -> u64
 where
     S: BuildHasher,
 {
-    let mut state = hasher.build_hasher();
-    string.hash(&mut state);
-    state.finish()
+    hasher.hash_one(string)
 }
 
 /// Gets a mutable entry for the given string using its hash
@@ -1325,7 +1325,7 @@ mod tests {
 
         drop(rodeo);
         for string in strings {
-            unsafe { Box::from_raw(string) };
+            let _ = unsafe { Box::from_raw(string) };
         }
     }
 

@@ -8,10 +8,12 @@ use crate::{
 };
 use alloc::vec::Vec;
 use core::{
-    hash::{BuildHasher, Hash, Hasher},
+    hash::BuildHasher,
     ops::Index,
 };
 use hashbrown::HashMap;
+#[cfg(feature = "serialize")]
+use core::hash::{Hash, Hasher};
 
 /// A read-only view of a [`Rodeo`] or [`ThreadedRodeo`] that allows contention-free access to interned strings,
 /// both key to string resolution and string to key lookups
@@ -80,12 +82,7 @@ impl<K, S> RodeoReader<K, S> {
         let string_slice: &str = val.as_ref();
 
         // Make a hash of the requested string
-        let hash = {
-            let mut state = self.hasher.build_hasher();
-            string_slice.hash(&mut state);
-
-            state.finish()
-        };
+        let hash = self.hasher.hash_one(string_slice);
 
         // Get the map's entry that the string should occupy
         let entry = self.map.raw_entry().from_hash(hash, |key| {
@@ -752,15 +749,17 @@ mod tests {
         }
     }
 
-    #[cfg(all(not(any(miri, feature = "no-std")), features = "multi-threaded"))]
+    #[cfg(all(not(any(miri, feature = "no-std")), feature = "multi-threaded"))]
     mod multi_threaded {
-        use crate::{locks::Arc, RodeoReader, ThreadedRodeo};
+        use crate::{keys::Key, locks::Arc, Spur, ThreadedRodeo};
         use std::thread;
+        #[cfg(feature = "serialize")]
+        use crate::RodeoReader;
 
         #[test]
         fn get() {
             let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("A");
+            let key = rodeo.get_or_intern("A");
 
             let reader = rodeo.into_reader();
             assert_eq!(Some(key), reader.get("A"));
@@ -772,7 +771,7 @@ mod tests {
         #[cfg(not(miri))]
         fn get_threaded() {
             let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("A");
+            let key = rodeo.get_or_intern("A");
 
             let reader = Arc::new(rodeo.into_reader());
 
@@ -789,7 +788,7 @@ mod tests {
         #[test]
         fn resolve() {
             let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("A");
+            let key = rodeo.get_or_intern("A");
 
             let reader = rodeo.into_reader();
             assert_eq!("A", reader.resolve(&key));
@@ -799,7 +798,7 @@ mod tests {
         #[cfg(not(miri))]
         fn resolve_threaded() {
             let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("A");
+            let key = rodeo.get_or_intern("A");
 
             let reader = Arc::new(rodeo.into_reader());
 
@@ -814,9 +813,9 @@ mod tests {
         #[test]
         fn len() {
             let rodeo = ThreadedRodeo::default();
-            rodeo.intern("A");
-            rodeo.intern("B");
-            rodeo.intern("C");
+            rodeo.get_or_intern("A");
+            rodeo.get_or_intern("B");
+            rodeo.get_or_intern("C");
 
             let reader = rodeo.into_reader();
             assert_eq!(reader.len(), 3);
@@ -830,21 +829,22 @@ mod tests {
             assert!(reader.is_empty());
         }
 
-        #[test]
-        fn clone() {
-            let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("Test");
+        // NOTE: Disabled because `Clone` is not implemented for [`ThreadedRodeo`]
+        // #[test]
+        // fn clone() {
+        //     let rodeo = ThreadedRodeo::default();
+        //     let key = rodeo.get_or_intern("Test");
 
-            let reader_rodeo = rodeo.into_reader();
-            assert_eq!("Test", reader_rodeo.resolve(&key));
+        //     let reader_rodeo = rodeo.into_reader();
+        //     assert_eq!("Test", reader_rodeo.resolve(&key));
 
-            let cloned = reader_rodeo.clone();
-            assert_eq!("Test", cloned.resolve(&key));
+        //     let cloned = reader_rodeo.clone();
+        //     assert_eq!("Test", cloned.resolve(&key));
 
-            drop(reader_rodeo);
+        //     drop(reader_rodeo);
 
-            assert_eq!("Test", cloned.resolve(&key));
-        }
+        //     assert_eq!("Test", cloned.resolve(&key));
+        // }
 
         #[test]
         fn iter() {
@@ -899,7 +899,7 @@ mod tests {
         #[test]
         fn into_resolver() {
             let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("A");
+            let key = rodeo.get_or_intern("A");
 
             let resolver = rodeo.into_reader().into_resolver();
             assert_eq!("A", resolver.resolve(&key));
@@ -914,7 +914,7 @@ mod tests {
 
         #[test]
         fn contains() {
-            let mut rodeo = ThreadedRodeo::default();
+            let rodeo = ThreadedRodeo::default();
             rodeo.get_or_intern("");
             let resolver = rodeo.into_reader();
 
@@ -924,7 +924,7 @@ mod tests {
 
         #[test]
         fn contains_key() {
-            let mut rodeo = ThreadedRodeo::default();
+            let rodeo = ThreadedRodeo::default();
             let key = rodeo.get_or_intern("");
             let resolver = rodeo.into_reader();
 
@@ -953,7 +953,7 @@ mod tests {
         #[test]
         fn index() {
             let rodeo = ThreadedRodeo::default();
-            let key = rodeo.intern("A");
+            let key = rodeo.get_or_intern("A");
 
             let reader = rodeo.into_reader();
             assert_eq!("A", &reader[key]);
