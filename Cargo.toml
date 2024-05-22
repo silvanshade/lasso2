@@ -1,6 +1,6 @@
 [package]
 name = "lasso2"
-version = "0.7.2"
+version = "0.8.0"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/silvanshade/lasso2"
 documentation = "https://docs.rs/lasso2"
