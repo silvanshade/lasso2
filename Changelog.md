@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bumped MSRV to 1.71.0
+- Forked lasso into lasso2
 - Bumped MSRV to 1.61.0
 - Updated to 2021 edition
 - Interning empty strings no longer counts towards the memory limit of any interners. Empty strings now take up zero
