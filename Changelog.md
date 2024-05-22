@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - ReleaseDate
 
+## [0.8.2] - 2024-05-22
+
+### Changed
+
+- Refactor algorithm to simplify previous fix for Kixiron/lasso [#44](https://github.com/Kixiron/lasso/issues/44)
+
 ## [0.8.1] - 2024-05-22
 
 ### Fixed
@@ -219,7 +225,8 @@ This version really wouldn't be possible without the amazing work of @CAD97. The
 
 <!-- next-url -->
 
-[Unreleased]: https://github.com/silvanshade/lasso2/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/silvanshade/lasso2/compare/v0.8.2...HEAD
+[0.8.2]: https://github.com/silvanshade/lasso2/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/silvanshade/lasso2/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/silvanshade/lasso2/compare/v0.7.2...v0.8.0
 [0.7.2]: https://github.com/silvanshade/lasso2/compare/v0.7.1...v0.7.2
