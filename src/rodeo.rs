@@ -8,19 +8,13 @@ use crate::{
     Capacity, LassoError, LassoErrorKind, LassoResult, MemoryLimits,
 };
 use alloc::vec::Vec;
-use core::{
-    cmp::max,
-    hash::BuildHasher,
-    iter::FromIterator,
-    num::NonZeroUsize,
-    ops::Index,
-};
+#[cfg(feature = "serialize")]
+use core::hash::{Hash, Hasher};
+use core::{cmp::max, hash::BuildHasher, iter::FromIterator, num::NonZeroUsize, ops::Index};
 use hashbrown::{
     hash_map::{RawEntryMut, RawVacantEntryMut},
     HashMap,
 };
-#[cfg(feature = "serialize")]
-use core::hash::{Hash, Hasher};
 
 compile! {
     if #[feature = "serialize"] {

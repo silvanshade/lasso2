@@ -561,10 +561,10 @@ mod tests {
 
     #[cfg(all(not(any(miri, feature = "no-std")), feature = "multi-threaded"))]
     mod multi_threaded {
-        use crate::{keys::Key, locks::Arc, Spur, ThreadedRodeo};
-        use std::thread;
         #[cfg(feature = "serialize")]
         use crate::RodeoResolver;
+        use crate::{keys::Key, locks::Arc, Spur, ThreadedRodeo};
+        use std::thread;
 
         #[test]
         fn resolve() {
@@ -599,10 +599,7 @@ mod tests {
             let moved = Arc::clone(&resolver);
             thread::spawn(move || {
                 assert_eq!(Some("A"), moved.try_resolve(&key));
-                assert_eq!(
-                    None,
-                    moved.try_resolve(&Spur::try_from_usize(10).unwrap())
-                );
+                assert_eq!(None, moved.try_resolve(&Spur::try_from_usize(10).unwrap()));
             });
 
             assert_eq!(Some("A"), resolver.try_resolve(&key));

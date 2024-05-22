@@ -7,13 +7,10 @@ use crate::{
     Rodeo,
 };
 use alloc::vec::Vec;
-use core::{
-    hash::BuildHasher,
-    ops::Index,
-};
-use hashbrown::HashMap;
 #[cfg(feature = "serialize")]
 use core::hash::{Hash, Hasher};
+use core::{hash::BuildHasher, ops::Index};
+use hashbrown::HashMap;
 
 /// A read-only view of a [`Rodeo`] or [`ThreadedRodeo`] that allows contention-free access to interned strings,
 /// both key to string resolution and string to key lookups
@@ -751,10 +748,10 @@ mod tests {
 
     #[cfg(all(not(any(miri, feature = "no-std")), feature = "multi-threaded"))]
     mod multi_threaded {
-        use crate::{keys::Key, locks::Arc, Spur, ThreadedRodeo};
-        use std::thread;
         #[cfg(feature = "serialize")]
         use crate::RodeoReader;
+        use crate::{keys::Key, locks::Arc, Spur, ThreadedRodeo};
+        use std::thread;
 
         #[test]
         fn get() {
