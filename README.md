@@ -15,16 +15,16 @@ key to str operations for the lowest possible memory usage.
 For single-threaded workloads [`Rodeo`] is encouraged, while multi-threaded applications should use [`ThreadedRodeo`].
 Both of these are the only way to intern strings, but most applications will hit a stage where they are done interning
 strings, and at that point is where the choice between [`RodeoReader`] and [`RodeoResolver`]. If the user needs to get
-keys for strings still, then they must use the [`RodeoReader`] (although they can still transfer into a  [`RodeoResolver`])
+keys for strings still, then they must use the [`RodeoReader`] (although they can still transfer into a [`RodeoResolver`])
 at this point. For users who just need key to string resolution, the [`RodeoResolver`] gives contention-free access at the
 minimum possible memory usage. Note that to gain access to [`ThreadedRodeo`] the `multi-threaded` feature is required.
 
 | Interner          | Thread-safe | Intern String | str to key | key to str | Contention Free | Memory Usage |
 | ----------------- | :---------: | :-----------: | :--------: | :--------: | :-------------: | :----------: |
-| [`Rodeo`]         |      ❌      |       ✅       |     ✅      |     ✅      |       N/A       |    Medium    |
-| [`ThreadedRodeo`] |      ✅      |       ✅       |     ✅      |     ✅      |        ❌        |     Most     |
-| [`RodeoReader`]   |      ✅      |       ❌       |     ✅      |     ✅      |        ✅        |    Medium    |
-| [`RodeoResolver`] |      ✅      |       ❌       |     ❌      |     ✅      |        ✅        |    Least     |
+| [`Rodeo`]         |     ❌      |      ✅       |     ✅     |     ✅     |       N/A       |    Medium    |
+| [`ThreadedRodeo`] |     ✅      |      ✅       |     ✅     |     ✅     |       ❌        |     Most     |
+| [`RodeoReader`]   |     ✅      |      ❌       |     ✅     |     ✅     |       ✅        |    Medium    |
+| [`RodeoResolver`] |     ✅      |      ❌       |     ❌     |     ✅     |       ✅        |    Least     |
 
 ## Cargo Features
 
@@ -32,13 +32,13 @@ By default `lasso2` has one dependency, `hashbrown`, and only [`Rodeo`] is expos
 The raw hashmap API is used for custom hashing within the hashmaps, which works to dramatically reduce memory usage
 To make use of [`ThreadedRodeo`], you must enable the `multi-threaded` feature.
 
-* `multi-threaded` - Enables [`ThreadedRodeo`], the interner for multi-threaded tasks
-* `ahasher` - Use [`ahash`]'s `RandomState` as the default hasher
-* `no-std` - Enables `no_std` + `alloc` support for [`Rodeo`] and [`ThreadedRodeo`]
-  * Automatically enables the following required features:
-    * `ahasher` - `no_std` hashing function
-* `serialize` - Implements `Serialize` and `Deserialize` for all `Spur` types and all interners
-* `inline-more` - Annotate external apis with `#[inline]`
+- `multi-threaded` - Enables [`ThreadedRodeo`], the interner for multi-threaded tasks
+- `ahasher` - Use [`ahash`]'s `RandomState` as the default hasher
+- `no-std` - Enables `no_std` + `alloc` support for [`Rodeo`] and [`ThreadedRodeo`]
+  - Automatically enables the following required features:
+    - `ahasher` - `no_std` hashing function
+- `serialize` - Implements `Serialize` and `Deserialize` for all `Spur` types and all interners
+- `inline-more` - Annotate external apis with `#[inline]`
 
 ## Example: Using Rodeo
 
@@ -130,7 +130,7 @@ assert_eq!("Hello, world!", resolver.resolve(&key));
 
 ## Example: Making a custom-ranged key
 
-Sometimes you want your keys to only inhabit (or *not* inhabit) a certain range of values so that you can have custom [niches].
+Sometimes you want your keys to only inhabit (or _not_ inhabit) a certain range of values so that you can have custom [niches].
 This allows you to pack more data into what would otherwise be unused space, which can be critical for memory-sensitive applications.
 
 ```rust
@@ -227,7 +227,7 @@ Benchmarks were gathered with [Criterion.rs](https://github.com/bheisler/criteri
 OS: Windows 10  
 CPU: Ryzen 9 3900X at 3800Mhz  
 RAM: 3200Mhz  
-Rustc: Stable 1.44.1  
+Rustc: Stable 1.44.1
 
 ### Rodeo
 
@@ -272,7 +272,6 @@ Rustc: Stable 1.44.1
 | `try_get_or_intern (filled)` | 31.002 μs | 844.78 MiB/s |
 | `get` (empty)                | 12.699 μs | 2.0141 GiB/s |
 | `get` (filled)               | 29.220 μs | 896.28 MiB/s |
-
 
 ### ThreadedRodeo
 
@@ -319,13 +318,13 @@ Rustc: Stable 1.44.1
 
 #### STD RandomState
 
-| Method              | Time (1 Thread) | Throughput (1 Thread) | Time (24 Threads) | Throughput  (24 Threads) |
-| :------------------ | :-------------: | :-------------------: | :---------------: | :----------------------: |
-| `resolve`           |    1.9398 μs    |     13.185 GiB/s      |     4.3153 μs     |       5.9269 GiB/s       |
-| `try_resolve`       |    1.9315 μs    |     13.242 GiB/s      |     4.1956 μs     |       6.0959 GiB/s       |
-| `resolve_unchecked` |    1.4416 μs    |     17.741 GiB/s      |     3.1204 μs     |       8.1964 GiB/s       |
-| `get` (empty)       |    38.886 μs    |     673.50 MiB/s      |        N\A        |           N\A            |
-| `get` (filled)      |    56.271 μs    |     465.42 MiB/s      |     105.12 μs     |       249.14 MiB/s       |
+| Method              | Time (1 Thread) | Throughput (1 Thread) | Time (24 Threads) | Throughput (24 Threads) |
+| :------------------ | :-------------: | :-------------------: | :---------------: | :---------------------: |
+| `resolve`           |    1.9398 μs    |     13.185 GiB/s      |     4.3153 μs     |      5.9269 GiB/s       |
+| `try_resolve`       |    1.9315 μs    |     13.242 GiB/s      |     4.1956 μs     |      6.0959 GiB/s       |
+| `resolve_unchecked` |    1.4416 μs    |     17.741 GiB/s      |     3.1204 μs     |      8.1964 GiB/s       |
+| `get` (empty)       |    38.886 μs    |     673.50 MiB/s      |        N\A        |           N\A           |
+| `get` (filled)      |    56.271 μs    |     465.42 MiB/s      |     105.12 μs     |      249.14 MiB/s       |
 
 #### AHash
 
